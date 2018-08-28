@@ -11,6 +11,16 @@ let router = new Router({
       path: "/",
       name: "Home",
       component: Home
+    },
+    {
+      path: "/register",
+      name: "Register",
+      component: Register
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: Login
     }
   ]
 });
