@@ -30,7 +30,7 @@ export default {
       error: state => state.error
     })
   }
-};
+}
 </script>
 
 <style scoped>

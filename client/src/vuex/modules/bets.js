@@ -1,7 +1,26 @@
+import BetService from '../../services/BetService'
+
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    bets: [],
+    team1: '',
+    team2: ''
+  },
   getters: {},
-  actions: {},
+  actions: {
+    // Get game stats from api and create bet thorugh that
+    async newBet({state, commit}) {
+      try {
+        await BetService.newBet({
+          
+        })
+      } catch (error) {
+
+      }
+    },
+    // Functions for making api requests to get game data
+
+  },
   mutations: {}
-};
+}
