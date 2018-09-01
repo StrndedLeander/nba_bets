@@ -1,6 +1,8 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Bets from "@/components/Bets";
+import Vue from "vue"
+import Router from "vue-router"
+import Teams from "@/components/Teams"
+import Register from "@/components/Register"
+import Login from "@/components/Login"
 
 Vue.use(Router);
 
@@ -9,8 +11,8 @@ let router = new Router({
   routes: [
     {
       path: "/",
-      name: "Bets",
-      component: Bets
+      name: "Teams",
+      component: Teams
     },
     {
       path: "/register",

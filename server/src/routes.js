@@ -1,4 +1,5 @@
 const Authentication = require('./controller/Authentication')
+const Games = require('./controller/GameController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -8,4 +9,6 @@ module.exports = (app) => {
   app.post('/register', Authentication.register)
 
   app.post('/login', Authentication.login)
+
+  app.get('/standings', Games.getStandings)
 }

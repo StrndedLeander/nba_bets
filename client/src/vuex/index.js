@@ -1,12 +1,13 @@
 import Vuex from "vuex";
 import Vue from "vue";
-import bets from "./modules/bets";
+import games from "./modules/games"
+// import bets from "./modules/bets";
 import users from "./modules/users"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: { bets, users },
+  modules: { games, users },
   state: {},
   getters: {},
   actions: {},
