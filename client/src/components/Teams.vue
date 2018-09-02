@@ -3,7 +3,7 @@
   <ul v-for="standing in standings" :key="standing.id">
     <li>{{standing.name}}</li>
   </ul>
-  <button @click="basicGet">Hmm!</button>
+  <button @click="getStandings">Hmm!</button>
 </div>
 </template>
 
@@ -19,9 +19,9 @@ export default {
     })
   },
   methods: {
-    ...mapActions("games", ["basicGet"])
+    ...mapActions("games", ["getStandings"])
   }
-};
+}
 </script>
 
 <style scoped>
