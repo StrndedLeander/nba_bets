@@ -1,2 +1,1 @@
-client/src/services/Api/config.js
-server/src/Api/apiConfig.js
+server/src/config/apiConfig.js

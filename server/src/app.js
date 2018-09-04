@@ -11,18 +11,11 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-// Start of MySportsFeeds API Authentication
-const apiConfig = require('./Api/apiConfig')
-
-var MySportsFeeds = require('mysportsfeeds-node')
-
-var msf = new MySportsFeeds('2.0', true)
-
-msf.authenticate(apiConfig.api_key, apiConfig.password)
-// End
-
 const connection = require('./config/connection')
 connection.connect()
+
+const api = require('./Api/AuthenticateApi')
+api.authenticate()
 
 require('./routes')(app)
 
