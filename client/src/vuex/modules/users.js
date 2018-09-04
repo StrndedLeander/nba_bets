@@ -10,7 +10,10 @@ export default {
   },
   getters: {},
   actions: {
-    async register({state, commit}) {
+    async register({
+      state,
+      commit
+    }) {
       try {
         await AuthenticationService.register({
           email: state.email,
@@ -23,8 +26,18 @@ export default {
     }
   },
   mutations: {
-    setError(state, error){
+    setError(state, error) {
       state.error = error
+    },
+    setEmail(state, email) {
+      state.email = email
+    },
+    setUsername(state, username) {
+      state.username = username
+    },
+    setPassword(state, password) {
+      console.log(password)
+      state.password = password
     }
   }
 };

@@ -3,6 +3,7 @@ import GamesService from '../../services/GamesService'
 export default {
   namespaced: true,
   state: {
+    season: "2018-2019-regular/standings.json",
     gameInfo: {
       homeTeam: '',
       awayTeam: ''
@@ -12,10 +13,13 @@ export default {
   getters: {},
   actions: {
     // Get game stats from api and create bet thorugh that
-    async getStandings(commit) {
+    async getStandings({
+      commit
+    }) {
       try {
-        const standings = await GamesService.getStandings("2018-2019-regular/standings.json")
-        commit("setStandings", standings)
+        commit("setStandings", await GamesService.getStandings({
+          path: "2018-2019-regular/standings.json"
+        }))
       } catch (error) {
         console.log(error)
       }

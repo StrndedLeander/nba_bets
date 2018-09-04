@@ -7,15 +7,15 @@ const config = require('./config/config')
 
 const app = express()
 
+// app.use(express.urlencoded({
+//   extended: false
+// }))
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
 const connection = require('./config/connection')
 connection.connect()
-
-const api = require('./Api/AuthenticateApi')
-api.authenticate()
 
 require('./routes')(app)
 
