@@ -5,7 +5,7 @@ const authentication = require('../Api/AuthenticateApi')
 module.exports = {
   getStandings (req, res) {
     authentication.authenticate()
-    let path = req.body.path
+    let path = req.query.path
     let url = api.baseURL + path
     console.log(url)
     request(url, function (error, response, body) {
@@ -14,7 +14,6 @@ module.exports = {
       }
       if (!error && response.statusCode === 200) {
         var json = JSON.parse(body)
-        console.log('hi' + json)
         res.send(json)
       } else {
         let error = 'There was an error: ' + response.statusCode
