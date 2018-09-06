@@ -18,7 +18,7 @@ export default {
     }) {
       try {
         commit("setStandings", await GamesService.getStandings({
-          path: "2018-2019-regular/standings.json"
+          path: "latest/standings.json"
         }))
       } catch (error) {
         console.log(error)
