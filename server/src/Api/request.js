@@ -1,39 +1,56 @@
-module.exports.request = function (config, callback) {
+const https = require('https')
+const btoa = require('btoa')
+const api = require('../Api/apiConfig.js')
+
+module.exports.doRequest = function (path) {
   'use strict'
-  const httpTransport = require('https')
-  const btoa = require('btoa')
-  const responseEncoding = 'utf8'
-  const httpOptions = {
-    hostname: 'www.mysportsfeeds.com',
+  let pullURL = api.baseURL + path
+  console.log('url', pullURL)
+  const options = {
+    host: 'www.mysportsfeeds.com',
     port: '443',
-    path: config.path,
+    path: pullURL,
     method: 'GET',
     headers: {
-      'Authorization': 'Basic ' + btoa(config.apiKey + ':' + 'MYSPORTSFEEDS')
+      'Authorization': 'Basic ' + btoa(api.apiKey + ':' + 'MYSPORTSFEEDS')
     }
   }
-  httpOptions.headers['User-Agent'] = 'node ' + process.version
+  options.headers['User-Agent'] = 'node ' + process.version
 
-  const request = httpTransport.request(httpOptions, (resp) => {
-    let responseBufs = []
-    let responseStr = ''
+  https.request(options, (res) => {
+    var body = ''
 
-    resp.on('data', (chunk) => {
-      if (Buffer.isBuffer(chunk)) {
-        responseBufs.push(chunk)
-      } else {
-        responseStr = responseStr + chunk
-      }
-    }).on('end', () => {
-      responseStr = responseBufs.length > 0
-        ? Buffer.concat(responseBufs).toString(responseEncoding) : responseStr
-      callback(null, resp.statusCode, resp.headers, responseStr)
+    res.on('data', (chunk) => {
+      body += chunk
     })
-  })
-    .setTimeout(0)
-    .on('error', (error) => {
-      callback(error)
+    res.on('end', () => {
+      var response = JSON.parse(body)
+      console.log('hi', response)
     })
-  request.write('')
-  request.end()
+  }).end()
 }
+//   const request = https.request(httpOptions, (resp) => {
+//     let responseBufs = []
+//     let responseStr = ''
+//     resp.on('data', (chunk) => {
+//       if (Buffer.isBuffer(chunk)) {
+//         responseBufs.push(chunk)
+//       } else {
+//         responseStr = responseStr + chunk
+//       }
+//     }).on('end', () => {
+//       console.log('.')
+//       responseStr = responseBufs.length > 0
+//         ? Buffer.concat(responseBufs).toString(responseEncoding) : responseStr
+//       console.log(responseStr)
+//       return responseStr
+//     })
+//   })
+//     .setTimeout(0)
+//     .on('error', (error) => {
+//       return error
+//     })
+//   console.log(request)
+//   request.write('')
+//   request.end()
+// }

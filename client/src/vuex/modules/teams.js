@@ -24,8 +24,9 @@ export default {
     async getTeams() {
       // stats = Win % , W, L, T /
       let teams = await TeamService.getTeams({
-        path: "latest/team_stats_totals .json"
+        path: "latest/team_stats_totals.json"
       })
+      console.log(teams)
     }
   },
   mutations: {
