@@ -11,10 +11,11 @@ module.exports = {
   },
   getTeams (req, res) {
     let path = req.query.path
-    let teams = request.doRequest(path)
-    console.log(teams)
-    res.send({
-      teams: teams
-    })
+    let teams
+    request.doRequest(path)
+    console.log('teams', teams)
+    // res.send({
+    //   teams: teams
+    // })
   }
 }

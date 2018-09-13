@@ -3,6 +3,9 @@ import TeamService from '../../services/TeamService'
 export default {
   namespaced: true,
   state: {
+    request: {
+      league, season, feed, format, params
+    },
     standings: {},
     teams: {}
   },
@@ -24,6 +27,7 @@ export default {
     async getTeams() {
       // stats = Win % , W, L, T /
       let teams = await TeamService.getTeams({
+        league:, season, feed, format, params,
         path: "latest/team_stats_totals.json"
       })
       console.log(teams)
